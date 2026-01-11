@@ -4,104 +4,87 @@
 <meta charset="UTF-8">
 <title>Squid Game Deluxe Roleplay | Staff Access</title>
 <style>
-  body {
-    margin: 0;
-    font-family: 'Arial Black', sans-serif;
-    background: linear-gradient(135deg, #0b0b0b, #1a1a1a);
-    color: white;
-    text-align: center;
-  }
-
-  /* Glühender Squid Game Header */
-  h1 {
-    font-size: 50px;
-    color: #e50914;
-    text-shadow: 0 0 15px #e50914;
-    animation: glow 2s infinite alternate;
-    margin-bottom: 40px;
-  }
-
-  @keyframes glow {
-    from { text-shadow: 0 0 10px #e50914; }
-    to { text-shadow: 0 0 30px #e50914; }
-  }
-
-  #lockscreen {
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  input {
-    padding: 14px;
-    font-size: 18px;
-    border-radius: 8px;
-    border: 2px solid #e50914;
-    background: #111;
-    color: white;
-    text-align: center;
-    width: 320px;
-    margin-top: 15px;
-  }
-
-  input::placeholder {
-    color: #777;
-  }
-
-  button {
-    margin-top: 20px;
-    padding: 15px 50px;
-    font-size: 20px;
-    font-weight: bold;
-    background: #1a1a1a;
-    border: 2px solid #e50914;
-    color: white;
-    border-radius: 12px;
-    cursor: pointer;
-    box-shadow: 0 4px 10px rgba(229,9,20,0.5);
-    transition: 0.3s;
-  }
-
-  button:hover {
-    background: #e50914;
-    color: #0b0b0b;
-    transform: scale(1.05);
-    box-shadow: 0 8px 20px rgba(229,9,20,0.8);
-  }
-
-  #content {
-    display: none;
-    padding: 60px 20px;
-  }
-
-  .doc-btn {
-    display: inline-block;
-    margin-top: 40px;
-    padding: 20px 60px;
-    font-size: 22px;
-    font-weight: bold;
-    border-radius: 12px;
-    background: #111;
-    border: 2px solid #e50914;
-    color: white;
-    text-decoration: none;
-    transition: 0.3s;
-    box-shadow: 0 4px 12px rgba(229,9,20,0.6);
-  }
-
-  .doc-btn:hover {
-    background: #e50914;
-    color: #0b0b0b;
-    transform: scale(1.08);
-    box-shadow: 0 8px 20px rgba(229,9,20,0.8);
-  }
-
-  p {
-    font-size: 18px;
-    color: #ccc;
-  }
+body {
+  margin: 0;
+  font-family: 'Arial Black', sans-serif;
+  background: linear-gradient(135deg, #0b0b0b, #1a1a1a);
+  color: white;
+  text-align: center;
+}
+h1 {
+  font-size: 50px;
+  color: #e50914;
+  text-shadow: 0 0 15px #e50914;
+  animation: glow 2s infinite alternate;
+  margin-bottom: 40px;
+}
+@keyframes glow {
+  from { text-shadow: 0 0 10px #e50914; }
+  to { text-shadow: 0 0 30px #e50914; }
+}
+#lockscreen {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+input {
+  padding: 14px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: 2px solid #e50914;
+  background: #111;
+  color: white;
+  text-align: center;
+  width: 320px;
+  margin-top: 15px;
+}
+input::placeholder { color: #777; }
+button {
+  margin-top: 20px;
+  padding: 15px 50px;
+  font-size: 20px;
+  font-weight: bold;
+  background: #1a1a1a;
+  border: 2px solid #e50914;
+  color: white;
+  border-radius: 12px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(229,9,20,0.5);
+  transition: 0.3s;
+}
+button:hover {
+  background: #e50914;
+  color: #0b0b0b;
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(229,9,20,0.8);
+}
+#content {
+  display: none;
+  padding: 60px 20px;
+}
+.doc-btn {
+  display: inline-block;
+  margin-top: 40px;
+  padding: 20px 60px;
+  font-size: 22px;
+  font-weight: bold;
+  border-radius: 12px;
+  background: #111;
+  border: 2px solid #e50914;
+  color: white;
+  text-decoration: none;
+  transition: 0.3s;
+  box-shadow: 0 4px 12px rgba(229,9,20,0.6);
+}
+.doc-btn:hover {
+  background: #e50914;
+  color: #0b0b0b;
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(229,9,20,0.8);
+}
+p { font-size: 18px; color: #ccc; }
 </style>
 </head>
 <body>
@@ -110,45 +93,37 @@
   <h1>🔒 Staff Access</h1>
   <p>Enter Staff Key</p>
   <input type="password" id="keyInput" placeholder="Staff Key">
-  <button onclick="checkKey()">Access</button>
+  <button id="accessBtn">Access</button>
 </div>
 
 <div id="content">
   <h1>🟥 Staff Panel</h1>
   <p>Authorized personnel only.</p>
-
-  <a class="doc-btn" href=" https://docs.google.com/document/d/18HLvRgBE2PwmKW3vsQigE9h1-QR25-j05qhXyS4QAyE/edit?usp=sharing" target="_blank">
+  <a class="doc-btn" href="https://docs.google.com/document/d/18HLvRgBE2PwmKW3vsQigE9h1-QR25-j05qhXyS4QAyE/edit?usp=sharing" target="_blank">
     📄 Worker Tryout Document
   </a>
 </div>
 
 <script>
-/* ----------------------------
-    STAFF ACCESS SCRIPT
-   ---------------------------- */
-
-// SHA-256 hash of your key: aewudahw_dawu#7/3dkB7
+// SHA-256 hash of your key "aewudahw_dawu#7/3dkB7"
 const STORED_HASH = "9f3d6b0b6c0e5b3b9bb7f6f3dbcc9c9f9c2e3a7bb1b9a3c7b0bbd9b4c5d8a4f1";
 
-async function sha256(message) {
-  const msgBuffer = new TextEncoder().encode(message);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
-  return Array.from(new Uint8Array(hashBuffer))
-    .map(b => b.toString(16).padStart(2, "0"))
-    .join("");
-}
-
-async function checkKey() {
+document.getElementById("accessBtn").addEventListener("click", async function(){
   const input = document.getElementById("keyInput").value;
-  const hash = await sha256(input);
 
-  if (hash === STORED_HASH) {
+  const buffer = new TextEncoder().encode(input);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", buffer);
+  const hash = Array.from(new Uint8Array(hashBuffer))
+    .map(b => b.toString(16).padStart(2,"0"))
+    .join("");
+
+  if(hash === STORED_HASH){
     document.getElementById("lockscreen").style.display = "none";
     document.getElementById("content").style.display = "block";
   } else {
     alert("Access denied.");
   }
-}
+});
 </script>
 
 </body>
