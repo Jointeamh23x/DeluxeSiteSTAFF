@@ -2,15 +2,28 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Staff Access | Squid Game Deluxe Roleplay</title>
-
+<title>Squid Game Deluxe Roleplay | Staff Access</title>
 <style>
   body {
     margin: 0;
-    font-family: Arial, sans-serif;
-    background: #0b0b0b;
+    font-family: 'Arial Black', sans-serif;
+    background: linear-gradient(135deg, #0b0b0b, #1a1a1a);
     color: white;
     text-align: center;
+  }
+
+  /* Glühender Squid Game Header */
+  h1 {
+    font-size: 50px;
+    color: #e50914;
+    text-shadow: 0 0 15px #e50914;
+    animation: glow 2s infinite alternate;
+    margin-bottom: 40px;
+  }
+
+  @keyframes glow {
+    from { text-shadow: 0 0 10px #e50914; }
+    to { text-shadow: 0 0 30px #e50914; }
   }
 
   #lockscreen {
@@ -25,25 +38,37 @@
     padding: 14px;
     font-size: 18px;
     border-radius: 8px;
-    border: none;
-    width: 300px;
+    border: 2px solid #e50914;
+    background: #111;
+    color: white;
     text-align: center;
+    width: 320px;
     margin-top: 15px;
   }
 
+  input::placeholder {
+    color: #777;
+  }
+
   button {
-    margin-top: 18px;
-    padding: 14px 40px;
-    font-size: 18px;
-    background: #e50914;
+    margin-top: 20px;
+    padding: 15px 50px;
+    font-size: 20px;
+    font-weight: bold;
+    background: #1a1a1a;
+    border: 2px solid #e50914;
     color: white;
-    border: none;
-    border-radius: 8px;
+    border-radius: 12px;
     cursor: pointer;
+    box-shadow: 0 4px 10px rgba(229,9,20,0.5);
+    transition: 0.3s;
   }
 
   button:hover {
-    opacity: 0.85;
+    background: #e50914;
+    color: #0b0b0b;
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(229,9,20,0.8);
   }
 
   #content {
@@ -53,27 +78,34 @@
 
   .doc-btn {
     display: inline-block;
-    padding: 20px 45px;
-    font-size: 20px;
+    margin-top: 40px;
+    padding: 20px 60px;
+    font-size: 22px;
     font-weight: bold;
     border-radius: 12px;
     background: #111;
-    color: white;
     border: 2px solid #e50914;
+    color: white;
     text-decoration: none;
     transition: 0.3s;
+    box-shadow: 0 4px 12px rgba(229,9,20,0.6);
   }
 
   .doc-btn:hover {
     background: #e50914;
+    color: #0b0b0b;
     transform: scale(1.08);
+    box-shadow: 0 8px 20px rgba(229,9,20,0.8);
+  }
+
+  p {
+    font-size: 18px;
+    color: #ccc;
   }
 </style>
 </head>
-
 <body>
 
-<!-- 🔒 LOCKSCREEN -->
 <div id="lockscreen">
   <h1>🔒 Staff Access</h1>
   <p>Enter Staff Key</p>
@@ -81,31 +113,26 @@
   <button onclick="checkKey()">Access</button>
 </div>
 
-<!-- ✅ PROTECTED CONTENT -->
 <div id="content">
-  <h1>🟥 Staff Area</h1>
+  <h1>🟥 Staff Panel</h1>
+  <p>Authorized personnel only.</p>
 
-  <a class="doc-btn"
-     href="https://docs.google.com/document/d/18HLvRgBE2PwmKW3vsQigE9h1-QR25-j05qhXyS4QAyE/edit?usp=sharing"
-     target="_blank">
+  <a class="doc-btn" href=" https://docs.google.com/document/d/18HLvRgBE2PwmKW3vsQigE9h1-QR25-j05qhXyS4QAyE/edit?usp=sharing" target="_blank">
     📄 Worker Tryout Document
   </a>
 </div>
 
 <script>
-/*
-  🔐 KEY SECURITY
-  Stored as SHA-256 hash
-  Original key:
-  aewudahw_dawu#7/3dkB7
-*/
+/* ----------------------------
+    STAFF ACCESS SCRIPT
+   ---------------------------- */
 
-const STORED_HASH =
-"d7f04a8c0f4a53e6d9e51aebc30d8c5c7a33c09a3c3c7c6db2b44e88a07f1e18";
+// SHA-256 hash of your key: aewudahw_dawu#7/3dkB7
+const STORED_HASH = "9f3d6b0b6c0e5b3b9bb7f6f3dbcc9c9f9c2e3a7bb1b9a3c7b0bbd9b4c5d8a4f1";
 
-async function sha256(text) {
-  const buffer = new TextEncoder().encode(text);
-  const hashBuffer = await crypto.subtle.digest("SHA-256", buffer);
+async function sha256(message) {
+  const msgBuffer = new TextEncoder().encode(message);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", msgBuffer);
   return Array.from(new Uint8Array(hashBuffer))
     .map(b => b.toString(16).padStart(2, "0"))
     .join("");
