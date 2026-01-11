@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Staff Access | Squid Game Deluxe Roleplay</title>
+
+<style>
+  body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b0b0b;
+    color: white;
+    text-align: center;
+  }
+
+  #lockscreen {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  input {
+    padding: 14px;
+    font-size: 18px;
+    border-radius: 8px;
+    border: none;
+    width: 300px;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  button {
+    margin-top: 18px;
+    padding: 14px 40px;
+    font-size: 18px;
+    background: #e50914;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+
+  button:hover {
+    opacity: 0.85;
+  }
+
+  #content {
+    display: none;
+    padding: 60px 20px;
+  }
+
+  .doc-btn {
+    display: inline-block;
+    padding: 20px 45px;
+    font-size: 20px;
+    font-weight: bold;
+    border-radius: 12px;
+    background: #111;
+    color: white;
+    border: 2px solid #e50914;
+    text-decoration: none;
+    transition: 0.3s;
+  }
+
+  .doc-btn:hover {
+    background: #e50914;
+    transform: scale(1.08);
+  }
+</style>
+</head>
+
+<body>
+
+<!-- 🔒 LOCKSCREEN -->
+<div id="lockscreen">
+  <h1>🔒 Staff Access</h1>
+  <p>Enter Staff Key</p>
+  <input type="password" id="keyInput" placeholder="Staff Key">
+  <button onclick="checkKey()">Access</button>
+</div>
+
+<!-- ✅ PROTECTED CONTENT -->
+<div id="content">
+  <h1>🟥 Staff Area</h1>
+
+  <a class="doc-btn"
+     href="https://docs.google.com/document/d/18HLvRgBE2PwmKW3vsQigE9h1-QR25-j05qhXyS4QAyE/edit?usp=sharing"
+     target="_blank">
+    📄 Worker Tryout Document
+  </a>
+</div>
+
+<script>
+/*
+  🔐 KEY SECURITY
+  Stored as SHA-256 hash
+  Original key:
+  aewudahw_dawu#7/3dkB7
+*/
+
+const STORED_HASH =
+"d7f04a8c0f4a53e6d9e51aebc30d8c5c7a33c09a3c3c7c6db2b44e88a07f1e18";
+
+async function sha256(text) {
+  const buffer = new TextEncoder().encode(text);
+  const hashBuffer = await crypto.subtle.digest("SHA-256", buffer);
+  return Array.from(new Uint8Array(hashBuffer))
+    .map(b => b.toString(16).padStart(2, "0"))
+    .join("");
+}
+
+async function checkKey() {
+  const input = document.getElementById("keyInput").value;
+  const hash = await sha256(input);
+
+  if (hash === STORED_HASH) {
+    document.getElementById("lockscreen").style.display = "none";
+    document.getElementById("content").style.display = "block";
+  } else {
+    alert("Access denied.");
+  }
+}
+</script>
+
+</body>
+</html>
